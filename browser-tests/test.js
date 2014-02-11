@@ -24,7 +24,7 @@ module.exports.todoMVCTest = function (frameworkName, baseUrl, speedMode, laxMod
 
 		function launchBrowser() {
 			browser = new webdriver.Builder()
-			.withCapabilities({browserName : 'chrome' })
+			.withCapabilities({browserName : 'phantomjs' })
 			.build();
 
 			browser.get(baseUrl);
