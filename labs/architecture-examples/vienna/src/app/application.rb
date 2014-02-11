@@ -34,5 +34,6 @@ end
 
 # when document is ready, lets go!
 Document.ready? do
-  Application.new.run
+  $app = Application.new
+  $app.run
 end

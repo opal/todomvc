@@ -5079,7 +5079,7 @@
         }
 
         if (from > size) {
-          for (var i = size; i < index; i++) {
+          for (var i = size; i < from; i++) {
             self[i] = nil;
           }
         }
@@ -8262,12 +8262,12 @@
       var last_from = null;
       var in_range = false;
       for (var i = 0; i < from_length; i++) {
-        var char = from_chars[i];
+        var ch = from_chars[i];
         if (last_from == null) {
-          last_from = char;
-          from_chars_expanded.push(char);
+          last_from = ch;
+          from_chars_expanded.push(ch);
         }
-        else if (char === '-') {
+        else if (ch === '-') {
           if (last_from === '-') {
             from_chars_expanded.push('-');
             from_chars_expanded.push('-');
@@ -8281,16 +8281,16 @@
         }
         else if (in_range) {
           var start = last_from.charCodeAt(0) + 1;
-          var end = char.charCodeAt(0);
+          var end = ch.charCodeAt(0);
           for (var c = start; c < end; c++) {
             from_chars_expanded.push(String.fromCharCode(c));
           }
-          from_chars_expanded.push(char);
+          from_chars_expanded.push(ch);
           in_range = null;
           last_from = null;
         }
         else {
-          from_chars_expanded.push(char);
+          from_chars_expanded.push(ch);
         }
       }
 
@@ -8308,12 +8308,12 @@
           var last_to = null;
           var in_range = false;
           for (var i = 0; i < to_length; i++) {
-            var char = to_chars[i];
+            var ch = to_chars[i];
             if (last_from == null) {
-              last_from = char;
-              to_chars_expanded.push(char);
+              last_from = ch;
+              to_chars_expanded.push(ch);
             }
-            else if (char === '-') {
+            else if (ch === '-') {
               if (last_to === '-') {
                 to_chars_expanded.push('-');
                 to_chars_expanded.push('-');
@@ -8327,16 +8327,16 @@
             }
             else if (in_range) {
               var start = last_from.charCodeAt(0) + 1;
-              var end = char.charCodeAt(0);
+              var end = ch.charCodeAt(0);
               for (var c = start; c < end; c++) {
                 to_chars_expanded.push(String.fromCharCode(c));
               }
-              to_chars_expanded.push(char);
+              to_chars_expanded.push(ch);
               in_range = null;
               last_from = null;
             }
             else {
-              to_chars_expanded.push(char);
+              to_chars_expanded.push(ch);
             }
           }
 
@@ -8359,13 +8359,13 @@
 
       var new_str = ''
       for (var i = 0, length = self.length; i < length; i++) {
-        var char = self.charAt(i);
-        var sub = subs[char];
+        var ch = self.charAt(i);
+        var sub = subs[ch];
         if (inverse) {
-          new_str += (sub == null ? global_sub : char);
+          new_str += (sub == null ? global_sub : ch);
         }
         else {
-          new_str += (sub != null ? sub : char);
+          new_str += (sub != null ? sub : ch);
         }
       }
       return new_str;
@@ -8398,12 +8398,12 @@
       var last_from = null;
       var in_range = false;
       for (var i = 0; i < from_length; i++) {
-        var char = from_chars[i];
+        var ch = from_chars[i];
         if (last_from == null) {
-          last_from = char;
-          from_chars_expanded.push(char);
+          last_from = ch;
+          from_chars_expanded.push(ch);
         }
-        else if (char === '-') {
+        else if (ch === '-') {
           if (last_from === '-') {
             from_chars_expanded.push('-');
             from_chars_expanded.push('-');
@@ -8417,16 +8417,16 @@
         }
         else if (in_range) {
           var start = last_from.charCodeAt(0) + 1;
-          var end = char.charCodeAt(0);
+          var end = ch.charCodeAt(0);
           for (var c = start; c < end; c++) {
             from_chars_expanded.push(String.fromCharCode(c));
           }
-          from_chars_expanded.push(char);
+          from_chars_expanded.push(ch);
           in_range = null;
           last_from = null;
         }
         else {
-          from_chars_expanded.push(char);
+          from_chars_expanded.push(ch);
         }
       }
 
@@ -8444,12 +8444,12 @@
           var last_to = null;
           var in_range = false;
           for (var i = 0; i < to_length; i++) {
-            var char = to_chars[i];
+            var ch = to_chars[i];
             if (last_from == null) {
-              last_from = char;
-              to_chars_expanded.push(char);
+              last_from = ch;
+              to_chars_expanded.push(ch);
             }
-            else if (char === '-') {
+            else if (ch === '-') {
               if (last_to === '-') {
                 to_chars_expanded.push('-');
                 to_chars_expanded.push('-');
@@ -8463,16 +8463,16 @@
             }
             else if (in_range) {
               var start = last_from.charCodeAt(0) + 1;
-              var end = char.charCodeAt(0);
+              var end = ch.charCodeAt(0);
               for (var c = start; c < end; c++) {
                 to_chars_expanded.push(String.fromCharCode(c));
               }
-              to_chars_expanded.push(char);
+              to_chars_expanded.push(ch);
               in_range = null;
               last_from = null;
             }
             else {
-              to_chars_expanded.push(char);
+              to_chars_expanded.push(ch);
             }
           }
 
@@ -8495,8 +8495,8 @@
       var new_str = ''
       var last_substitute = null
       for (var i = 0, length = self.length; i < length; i++) {
-        var char = self.charAt(i);
-        var sub = subs[char]
+        var ch = self.charAt(i);
+        var sub = subs[ch]
         if (inverse) {
           if (sub == null) {
             if (last_substitute == null) {
@@ -8505,7 +8505,7 @@
             }
           }
           else {
-            new_str += char;
+            new_str += ch;
             last_substitute = null;
           }
         }
@@ -8517,7 +8517,7 @@
             }
           }
           else {
-            new_str += char;
+            new_str += ch;
             last_substitute = null;
           }
         }
@@ -12815,6 +12815,13 @@ args = $slice.call(arguments, 0);
         return self.new_record;
       };
 
+      def['$destroyed?'] = function() {
+        var self = this;
+        if (self.destroyed == null) self.destroyed = nil;
+
+        return self.destroyed;
+      };
+
       def['$loaded?'] = function() {
         var self = this;
         if (self.loaded == null) self.loaded = nil;
@@ -12859,7 +12866,9 @@ args = $slice.call(arguments, 0);
 
       def.$did_destroy = function() {
         var self = this;
+        self.destroyed = true;
         self.$class().$identity_map().$delete(self.$id());
+        self.$class().$all().$delete(self);
         return self.$trigger_events("destroy");
       };
 
@@ -12875,7 +12884,7 @@ args = $slice.call(arguments, 0);
         var self = this;
         return self.$trigger_events("update");
       };
-            ;$opal.donate(self, ["$load", "$new_record?", "$loaded?", "$save", "$create", "$update", "$destroy", "$did_destroy", "$did_create", "$did_update"]);
+            ;$opal.donate(self, ["$load", "$new_record?", "$destroyed?", "$loaded?", "$save", "$create", "$update", "$destroy", "$did_destroy", "$did_create", "$did_update"]);
     })(self)
     
   })(self);
@@ -13282,13 +13291,13 @@ if (m == null) m = nil;
 /* Generated by Opal 0.6.0 */
 (function($opal) {
   var $a, $b, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
-  $opal.add_stubs(['$element', '$on', '$strip', '$value', '$==', '$which', '$!', '$empty?', '$create', '$value=', '$each', '$update', '$completed', '$all', '$destroy', '$find', '$add_todo', '$render', '$find_all', '$adapter', '$new', '$<<', '$size', '$active', '$html=', '$template', '$remove_class', '$add_class', '$filter', '$[]', '$+', '$>']);
+  $opal.add_stubs(['$element', '$on', '$strip', '$value', '$==', '$which', '$!', '$empty?', '$create', '$value=', '$all?', '$to_proc', '$all', '$each', '$update', '$destroy', '$completed', '$find', '$add_todo', '$render', '$find_all', '$adapter', '$new', '$<<', '$size', '$active', '$html=', '$template', '$hide', '$show', '$remove_class', '$add_class', '$filter', '$[]', '$+', '$>']);
   return (function($base, $super) {
     function $AppView(){};
     var self = $AppView = $klass($base, $super, 'AppView', $AppView);
 
     var def = self._proto, $scope = self._scope, $a, $b, TMP_1, $c, TMP_2, $d, TMP_4;
-    def.footer = def.active = def.completed = nil;
+    def.footer = def.main = def.active = def.completed = nil;
     self.$element("#todoapp");
 
     ($a = ($b = self).$on, $a._p = (TMP_1 = function(e){var self = TMP_1._s || this, $a, $b, value = nil;
@@ -13302,9 +13311,17 @@ if (e == null) e = nil;
         return nil
       };}, TMP_1._s = self, TMP_1), $a).call($b, "keypress", "#new-todo");
 
-    ($a = ($c = self).$on, $a._p = (TMP_2 = function(){var self = TMP_2._s || this, $a, $b, TMP_3, $c;
-    return ($a = ($b = (($c = $scope.Todo) == null ? $opal.cm('Todo') : $c).$all()).$each, $a._p = (TMP_3 = function(t){var self = TMP_3._s || this;if (t == null) t = nil;
-      return t.$update($hash2(["completed"], {"completed": t.$completed()['$!']()}))}, TMP_3._s = self, TMP_3), $a).call($b)}, TMP_2._s = self, TMP_2), $a).call($c, "click", "#toggle-all");
+    ($a = ($c = self).$on, $a._p = (TMP_2 = function(){var self = TMP_2._s || this, $a, $b, $c, $d, TMP_3, complete_all = nil;
+      if (self.toggle_all == null) self.toggle_all = nil;
+
+    complete_all = (function() {if ((($a = ($b = ($c = (($d = $scope.Todo) == null ? $opal.cm('Todo') : $d).$all())['$all?'], $b._p = "completed".$to_proc(), $b).call($c)) !== nil && (!$a._isBoolean || $a == true))) {
+        return false
+        } else {
+        return true
+      }; return nil; })();
+      ($a = ($b = (($d = $scope.Todo) == null ? $opal.cm('Todo') : $d).$all()).$each, $a._p = (TMP_3 = function(t){var self = TMP_3._s || this;if (t == null) t = nil;
+      return t.$update($hash2(["completed"], {"completed": complete_all}))}, TMP_3._s = self, TMP_3), $a).call($b);
+      return self.toggle_all['$value='](complete_all);}, TMP_2._s = self, TMP_2), $a).call($c, "click", "#toggle-all");
 
     ($a = ($d = self).$on, $a._p = (TMP_4 = function(){var self = TMP_4._s || this, $a, $b, TMP_5, $c;
     return ($a = ($b = (($c = $scope.Todo) == null ? $opal.cm('Todo') : $c).$completed()).$each, $a._p = (TMP_5 = function(t){var self = TMP_5._s || this;if (t == null) t = nil;
@@ -13314,6 +13331,8 @@ if (e == null) e = nil;
       var $a, $b, TMP_6, $c, TMP_7, $d, TMP_8, $e, TMP_9, $f, self = this;
       self.input = (($a = $scope.Element) == null ? $opal.cm('Element') : $a).$find("#new-todo");
       self.footer = (($a = $scope.Element) == null ? $opal.cm('Element') : $a).$find("#footer");
+      self.main = (($a = $scope.Element) == null ? $opal.cm('Element') : $a).$find("#main");
+      self.toggle_all = (($a = $scope.Element) == null ? $opal.cm('Element') : $a).$find("#toggle-all");
       ($a = ($b = (($c = $scope.Todo) == null ? $opal.cm('Todo') : $c)).$on, $a._p = (TMP_6 = function(todo){var self = TMP_6._s || this;if (todo == null) todo = nil;
       self.$add_todo(todo);
         return self.$render();}, TMP_6._s = self, TMP_6), $a).call($b, "create");
@@ -13336,10 +13355,17 @@ if (e == null) e = nil;
     };
 
     def.$render = function() {
-      var $a, self = this;
+      var $a, $b, self = this;
       self.completed = (($a = $scope.Todo) == null ? $opal.cm('Todo') : $a).$completed().$size();
       self.active = (($a = $scope.Todo) == null ? $opal.cm('Todo') : $a).$active().$size();
-      return self.footer['$html='](self.$template().$render(self));
+      self.footer['$html='](self.$template().$render(self));
+      if ((($a = (($b = $scope.Todo) == null ? $opal.cm('Todo') : $b).$all()['$empty?']()) !== nil && (!$a._isBoolean || $a == true))) {
+        self.main.$hide();
+        return self.footer.$hide();
+        } else {
+        self.main.$show();
+        return self.footer.$show();
+      };
     };
 
     def.$show_filter = function(filter) {
@@ -13541,7 +13567,7 @@ if (e == null) e = nil;
 /* Generated by Opal 0.6.0 */
 (function($opal) {
   var $a, $b, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $hash2 = $opal.hash2;
-  $opal.add_stubs(['$template', '$on', '$add_class', '$focus', '$==', '$which', '$finish_editing', '$destroy', '$update', '$!', '$completed', '$render', '$remove', '$apply_filter', '$toggle_class', '$element', '$hidden?', '$completed?', '$strip', '$value', '$remove_class', '$empty?', '$clear', '$find']);
+  $opal.add_stubs(['$template', '$on', '$add_class', '$focus', '$which', '$===', '$finish_editing', '$cancel_editing', '$destroy', '$update', '$!', '$completed', '$render', '$remove', '$apply_filter', '$toggle_class', '$element', '$hidden?', '$completed?', '$==', '$strip', '$value', '$remove_class', '$empty?', '$clear', '$value=', '$title', '$find']);
   ;
   return (function($base, $super) {
     function $TodoView(){};
@@ -13551,6 +13577,10 @@ if (e == null) e = nil;
     def.todo = def.input = def.element = nil;
     self.$template("todo");
 
+    $opal.cdecl($scope, 'RETURN_KEY', 13);
+
+    $opal.cdecl($scope, 'ESCAPE_KEY', 27);
+
     ($a = ($b = self).$on, $a._p = (TMP_1 = function(){var self = TMP_1._s || this;
       if (self.element == null) self.element = nil;
       if (self.input == null) self.input = nil;
@@ -13558,12 +13588,8 @@ if (e == null) e = nil;
     self.element.$add_class("editing");
       return self.input.$focus();}, TMP_1._s = self, TMP_1), $a).call($b, "dblclick", "label");
 
-    ($a = ($c = self).$on, $a._p = (TMP_2 = function(e){var self = TMP_2._s || this;if (e == null) e = nil;
-    if (e.$which()['$=='](13)) {
-        return self.$finish_editing()
-        } else {
-        return nil
-      }}, TMP_2._s = self, TMP_2), $a).call($c, "keypress", ".edit");
+    ($a = ($c = self).$on, $a._p = (TMP_2 = function(e){var self = TMP_2._s || this, $a, $case = nil;if (e == null) e = nil;
+    return (function() {$case = e.$which();if ((($a = $scope.RETURN_KEY) == null ? $opal.cm('RETURN_KEY') : $a)['$===']($case)) {return self.$finish_editing()}else if ((($a = $scope.ESCAPE_KEY) == null ? $opal.cm('ESCAPE_KEY') : $a)['$===']($case)) {return self.$cancel_editing()}else { return nil }})()}, TMP_2._s = self, TMP_2), $a).call($c, "keyup", ".edit");
 
     ($a = ($d = self).$on, $a._p = (TMP_3 = function(){var self = TMP_3._s || this;
     return self.$finish_editing()}, TMP_3._s = self, TMP_3), $a).call($d, "blur", ".edit");
@@ -13616,6 +13642,12 @@ if (e == null) e = nil;
       };
     };
 
+    def.$cancel_editing = function() {
+      var self = this;
+      self.input['$value='](self.todo.$title());
+      return self.element.$remove_class("editing");
+    };
+
     def.$remove = function() {
       var self = this;
       return self.$element().$remove();
@@ -13625,6 +13657,7 @@ if (e == null) e = nil;
       var self = this, $iter = TMP_9._p, $yield = $iter || nil;
       TMP_9._p = null;
       $opal.find_super_dispatcher(self, 'render', TMP_9, $iter).apply(self, $zuper);
+      self.element.$toggle_class("completed", self.todo['$completed?']());
       return self.input = self.$element().$find(".edit");
     };
 
@@ -13782,7 +13815,7 @@ if (_hamlout == null) _hamlout = nil;
 ;
 /* Generated by Opal 0.6.0 */
 (function($opal) {
-  var $a, $b, TMP_4, $c, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass;
+  var $a, $b, TMP_4, $c, self = $opal.top, $scope = $opal, nil = $opal.nil, $breaker = $opal.breaker, $slice = $opal.slice, $klass = $opal.klass, $gvars = $opal.gvars;
   $opal.add_stubs(['$new', '$update', '$router', '$tap', '$route', '$apply_filter', '$[]', '$each', '$trigger', '$all', '$show_filter', '$ready?', '$run']);
   ;
   ;
@@ -13821,7 +13854,8 @@ if (_hamlout == null) _hamlout = nil;
     }, nil);
   })(self, null);
   return ($a = ($b = (($c = $scope.Document) == null ? $opal.cm('Document') : $c))['$ready?'], $a._p = (TMP_4 = function(){var self = TMP_4._s || this, $a;
-  return (($a = $scope.Application) == null ? $opal.cm('Application') : $a).$new().$run()}, TMP_4._s = self, TMP_4), $a).call($b);
+  $gvars["app"] = (($a = $scope.Application) == null ? $opal.cm('Application') : $a).$new();
+    return $gvars["app"].$run();}, TMP_4._s = self, TMP_4), $a).call($b);
 })(Opal);
 
 //# sourceMappingURL=/__opal_source_maps__/application.js.map

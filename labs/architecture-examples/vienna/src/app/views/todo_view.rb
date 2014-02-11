@@ -2,14 +2,19 @@ require 'vienna/template_view'
 
 class TodoView < Vienna::TemplateView
   template :todo
+  RETURN_KEY = 13
+  ESCAPE_KEY = 27
 
   on :dblclick, 'label' do
     @element.add_class 'editing'
     @input.focus
   end
 
-  on :keypress, '.edit' do |e|
-    finish_editing if e.which == 13
+  on :keyup, '.edit' do |e|
+    case e.which
+    when RETURN_KEY; finish_editing
+    when ESCAPE_KEY; cancel_editing
+    end
   end
 
   on :blur, '.edit' do
@@ -51,12 +56,18 @@ class TodoView < Vienna::TemplateView
     value.empty? ? clear : @todo.update(:title => value)
   end
 
+  def cancel_editing
+    @input.value = @todo.title
+    @element.remove_class 'editing'
+  end
+
   def remove
     element.remove
   end
 
   def render
     super
+    @element.toggle_class 'completed', @todo.completed?
     @input = element.find '.edit'
   end
 
