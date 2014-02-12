@@ -16,7 +16,7 @@ Run the sprockets based server for auto-compiling:
 $ bundle exec rackup
 ```
 
-Open `http://localhost:9292` in the browser.
+Open `http://localhost:8000/labs/architecture-examples/vienna/` in the browser.
 
 
 ## Running Vienna tests
