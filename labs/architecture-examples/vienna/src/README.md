@@ -18,6 +18,26 @@ $ bundle exec rackup
 
 Open `http://localhost:9292` in the browser.
 
+
+## Running Vienna tests
+
+Before running tests start the server:
+
+    cd todomvc/labs/architecture-examples/vienna/src
+    rackup
+
+Run all the tests with Vienna
+
+    mocha allTests.js --reporter spec --framework=vienna
+
+Grep on test description (useful for debugging)
+
+    mocha allTests.js --reporter spec --framework=vienna --grep 'te all checkbox should update st'
+
+
+
+
+
 ## Code Overview
 
 Opal comes with sprockets support built in, so using rack we can have an
