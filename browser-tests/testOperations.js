@@ -134,7 +134,7 @@ function TestOperations(page) {
 	this.assertItemAtIndexIsCompleted = function (index) {
 		page.getItemElements().then(function (toDoItems) {
 			toDoItems[index].getAttribute('class').then(function (cssClass) {
-				assert(cssClass.indexOf('completed') !== -1, 
+				assert(cssClass.indexOf('completed') !== -1,
 					'the item at index ' + index + ' should have been marked as completed');
 			});
 		});
@@ -180,6 +180,7 @@ function TestOperations(page) {
 
 	this.assertCompleteAllIsClear = function () {
 		page.getMarkAllCompletedCheckBox().then(function (markAllCompleted) {
+      // console.log(markAllCompleted);
 			markAllCompleted.isSelected().then(function (isSelected) {
 				assert(!isSelected, 'the mark-all-completed checkbox should be clear');
 			});

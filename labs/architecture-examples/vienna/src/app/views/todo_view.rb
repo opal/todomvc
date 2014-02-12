@@ -67,6 +67,7 @@ class TodoView < Vienna::TemplateView
 
   def render
     super
+    puts element.html
     @element.toggle_class 'completed', @todo.completed?
     @input = element.find '.edit'
   end

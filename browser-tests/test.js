@@ -35,6 +35,10 @@ module.exports.todoMVCTest = function (frameworkName, baseUrl, speedMode, laxMod
 			// for apps that use require, we have to wait a while for the dependencies to
 			// be loaded. There must be a more elegant solution than this!
 			browser.sleep(200);
+      // browser.takeScreenshot().then(function (s) {
+      //   console.log(s);
+      // });
+
 		}
 
 		function closeBrowser() {
@@ -140,7 +144,12 @@ module.exports.todoMVCTest = function (frameworkName, baseUrl, speedMode, laxMod
 
 				// all items are complete, now mark one as not-complete
 				page.toggleItemAtIndex(0);
+        browser.sleep(100)
+        browser.executeScript('return document.body.innerHTML').then(function (b) {console.log(b);})
 				testOps.assertCompleteAllIsClear();
+        // console.log('driver', browser.driver_)
+        // console.log(browser.driver.findElement(webdriver.By.name('btnG')).innerHTML);
+        // console.log(browser.findByXpath('//body'))
 
 				// now mark as complete, so that once again all items are completed
 				page.toggleItemAtIndex(0);
