@@ -1,0 +1,76 @@
+<:title>
+  Volt • TodoMVC
+</:title>
+
+<:body>
+
+<section id="todoapp">
+	<header id="header">
+		<h1>todos</h1>
+		<input id="new-todo" placeholder="What needs to be done?" autofocus value="{_new_label}" e-submit="add_todo">
+	</header>
+
+	<!-- This section should be hidden by default and shown when there are todos -->
+	<section id="main">
+		<input id="toggle-all" type="checkbox" checked="{_toggle_all}">
+		<label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+      {#each _items as item}
+        <li class="{#if item._completed?}completed{/} {#if item._editing?}editing{/}">
+        	<div class="view">
+        		<input class="toggle" type="checkbox" checked="{item._completed}">
+        		<label>{item._label}</label>
+        		<button class="destroy" e-click="remove_todo(index)"></button>
+        	</div>
+        	<input class="edit" value="{item._label}">
+        </li>
+      {/}
+    </ul>
+	</section>
+
+	<!-- This footer should hidden by default and shown when there are todos -->
+	<footer id="footer">
+		<!-- This should be `0 items left` by default -->
+		<span id="todo-count"><strong>1</strong> item left</span>
+		<!-- Remove this if you don't implement routing -->
+		<ul id="filters">
+			<li>
+				<a class="selected" href="#/">All</a>
+			</li>
+			<li>
+				<a href="#/active">Active</a>
+			</li>
+			<li>
+				<a href="#/completed">Completed</a>
+			</li>
+		</ul>
+		<!-- Hidden if no completed items are left ↓ -->
+		<button id="clear-completed">Clear completed (1)</button>
+	</footer>
+</section>
+
+  <!-- <div class="container">
+    <div class="header">
+      <ul class="nav nav-pills pull-right">
+        <:nav view="" text="Home" />
+        <:nav view="about" text="About" />
+      </ul>
+      <h3 class="text-muted">Project name</h3>
+    </div>
+
+    <:volt:notices />
+
+    {#template params._view.or('home')}
+
+    <div class="footer">
+      <p>&copy; Company 2014</p>
+    </div>
+
+  </div> -->
+</:body>
+
+<:nav>
+  <li class="{#if params._view.or('') == view}active{/}">
+    <a href="/{view}">{text}</a>
+  </li>
+</:nav>
