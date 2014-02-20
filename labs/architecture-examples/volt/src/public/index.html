@@ -3,15 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
     <% javascript_files.each do |javascript_file| %>
-      <script src="<%= javascript_file %>"></script>
+      <script src="<%= javascript_file %>?<%= Time.now.to_i %>"></script>
     <% end %>
 
     <% css_files.each do |css_file| %>
-      <link href="<%= css_file %>" media="all" rel="stylesheet" type="text/css" />
+      <link href="<%= css_file %>?<%= Time.now.to_i %>" media="all" rel="stylesheet" type="text/css" />
     <% end %>
-    
+
 	</head>
 	<body>
-    
+
 	</body>
 </html>
